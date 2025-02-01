@@ -3,17 +3,12 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require('../models/userModel');
 require('dotenv').config();
 
-
-console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
-console.log("GOOGLE_CLIENT_SECRET:", process.env.GOOGLE_CLIENT_SECRET);
-
-
 passport.use(
     new GoogleStrategy(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: "http://localhost:8001/api/auth/google/callback"
+            callbackURL: "https://url-shortner-ggh2.onrender.com/api/auth/google/callback"
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
