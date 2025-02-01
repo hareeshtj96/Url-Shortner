@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
-const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
+const REDIS_PASSWORD = process.env.REDIS_PASSWORD || undefined;
 
 const redisClient = redis.createClient({
     url: REDIS_URL,
