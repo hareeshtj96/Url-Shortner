@@ -220,7 +220,7 @@ router.get('/shorten/:alias', isAuthenticated, limiter, redirectShortUrl);
  *     summary: Get Overall Analytics for Authenticated User
  *     description: Retrieves the overall analytics for the authenticated user, including total URLs, total clicks, unique users, clicks by date (last 7 days), operating system type, and device type. This endpoint also caches the data for faster subsequent access.
  *     security:
- *       - cookieAuth -[]
+ *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: Successfully retrieved overall analytics data for the authenticated user.
@@ -326,7 +326,7 @@ router.get('/analytics/overall', isAuthenticated, limiter, getOverallAnalytics);
  *           type: string
  *           example: 'short-url-alias'
  *     security:
- *       - cookieAuth - []
+ *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: Successfully retrieved analytics data for the specific short URL alias.
@@ -392,7 +392,7 @@ router.get('/analytics/overall', isAuthenticated, limiter, getOverallAnalytics);
  *                   type: string
  *                   example: 'User not authenticated'
  *       404:
- *         description: The specified alias is not found in the system.
+ *         description: The specified alias does not exist in the system.
  *         content:
  *           application/json:
  *             schema:
@@ -429,7 +429,7 @@ router.get('/analytics/:alias', isAuthenticated, limiter, getAnalytics);
  *           type: string
  *           example: 'marketing'
  *     security:
- *       - cookieAuth - []
+ *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: Successfully retrieved analytics data for the specified topic.
@@ -474,7 +474,7 @@ router.get('/analytics/:alias', isAuthenticated, limiter, getAnalytics);
  *                         type: integer
  *                         example: 180
  *       400:
- *         description: Bad Request if the topic parameter is not provided.
+ *         description: Bad Request if the topic parameter is missing or invalid.
  *         content:
  *           application/json:
  *             schema:
@@ -482,7 +482,7 @@ router.get('/analytics/:alias', isAuthenticated, limiter, getAnalytics);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: 'Topic is required'
+ *                   example: 'Topic parameter is missing or invalid'
  *       404:
  *         description: Not Found if no URLs are associated with the specified topic.
  *         content:
@@ -492,7 +492,7 @@ router.get('/analytics/:alias', isAuthenticated, limiter, getAnalytics);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: 'Topic not found'
+ *                   example: 'No URLs found for the specified topic'
  *       500:
  *         description: Internal Server Error.
  *         content:
