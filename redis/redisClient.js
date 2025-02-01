@@ -3,11 +3,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
-const REDIS_PASSWORD = process.env.REDIS_PASSWORD || undefined;
 
 const redisClient = redis.createClient({
     url: REDIS_URL,
-    password: REDIS_PASSWORD,
     socket: {
         reconnectStrategy: (retries) => Math.min(retries * 50, 2000)
     }
