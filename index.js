@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require('dotenv');
 const connectToMongoDB = require("./Database/connectToMongoDB");
 const session = require('express-session');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 const passport = require('passport');
 require('./googleAuth/passport');
 const authRoute = require("./routes/routes")
@@ -27,6 +29,24 @@ app.use(session({
         httpOnly: true
     }
 }));
+
+// Swagger options
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Short URL API',
+            version: '1.0.0',
+            description: 'API documentation for the Short URL service',
+        },
+    },
+    apis: ['./routes/*.js'],
+};
+
+// Initialize Swagger
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // passport
 app.use(passport.initialize());
