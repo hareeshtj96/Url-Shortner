@@ -40,7 +40,7 @@ const swaggerOptions = {
             description: 'API documentation for the Short URL service',
         },
     },
-    apis: ['./routes/*.js'],
+    apis: ['./routes/routes.js'],
 };
 
 // Initialize Swagger

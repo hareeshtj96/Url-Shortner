@@ -106,7 +106,7 @@ router.get('/profile', isAuthenticated, profile);
  *     summary: Create a shortened URL
  *     description: This endpoint allows an authenticated user to create a shortened version of a long URL.
  *     security:
- *       - cookieAuth: []  
+ *       - cookieAuth: []
  *     requestBody:
  *       required: true
  *       content:
